@@ -1,0 +1,79 @@
+/* ===== Scrollbar CSS ===== */
+  /* Firefox */
+  * {
+    scrollbar-width: thin;
+    scrollbar-color: var(--nutral-color);
+  }
+
+  /* Chrome, Edge, and Safari */
+  *::-webkit-scrollbar {
+    width: 8px;
+  }
+
+  *::-webkit-scrollbar-track {
+    background: var(--primary-color);
+  }
+
+  *::-webkit-scrollbar-thumb {
+    background-color: var(--nutral-color);
+    border-radius: 10px;
+  }
+body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+    monospace;
+}
+*{
+  --secondery-color: #465362;
+  --primary-color: #0e1114;
+  --accent-color: #82A3A1;
+  --nutral-color: #F0ECE5;
+  --shadow-color: #0f1120;
+  --text-color: #d9e7d3;
+  overflow-x: hidden;
+  outline: none;
+  color: var(--text-color)
+}
+.App {
+  background-color: var(--primary-color);
+  width: 100svw;
+  height: calc(100svh - 4rem);
+  margin-top: 4rem;
+}
+
+.App-logo {
+  height: 40vmin;
+  pointer-events: none;
+}
+.align-center{
+  text-align: center;
+}
+.secondery-clr{
+  color: var(--secondery-color);
+}
+.center{
+  align-items: center;
+  justify-content: center;
+}
+.margin-1rem{
+  margin: 1rem;
+}
+.custom-loader {
+  justify-self: center;
+  align-self: center;
+  width:50px;
+  height:50px;
+  border-radius:50%;
+  border:8px solid;
+  border-color:#D9E7D3 #0000;
+  animation:s1 1s infinite;
+}
+@keyframes s1 {to{transform: rotate(.5turn)}}

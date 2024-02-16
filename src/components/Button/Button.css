@@ -1,0 +1,38 @@
+.fill-btn{
+    display: flex;
+    border-radius: 1rem;
+    padding: 15px 10px;
+    font-size: 1rem;
+    background-color: var(--accent-color);
+    position: relative;
+    cursor: pointer;
+    z-index: 10;
+    border: none;
+    color: whitesmoke;
+    font-weight: bold;
+    transition: all 0.3s;
+    text-shadow: 1px 0px 1px black;
+}
+.fill-btn:hover{
+    background-color: #93b8b5;
+    box-shadow: 2px 0px 5px black;
+}
+.outline-btn{
+    display: flex;
+    border-radius: 1rem;
+    padding: 15px 10px;
+    font-size: 1rem;
+    background-color: transparent;
+    position: relative;
+    cursor: pointer;
+    z-index: 10;
+    border: solid 3px var(--accent-color);
+    color: whitesmoke;
+    font-weight: bold;
+    transition: all 0.3s;
+    text-shadow: 1px 0px 1px black;
+}
+.outline-btn:hover{
+    background-color: hsla(176, 15%, 57%, 0.1);
+    box-shadow: inset 2px 0px 5px black;
+}
