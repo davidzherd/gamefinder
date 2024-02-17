@@ -7,15 +7,31 @@ const Home = () => {
   const [games, setGames] = useState([]);
   const [error, setError] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
-  const [nextGames, setNextGsames] = useState("");
+  const [nextGames, setNextGames] = useState("");
+
+  function checkSessionStorage() {
+    const stringObject = sessionStorage.getItem("homepage-games");
+    if (stringObject){
+    const parsedObject = JSON.parse(stringObject);
+    setGames(parsedObject.gamesArray);
+    setNextGames(parsedObject.nextURL);
+    }else{data();}
+}
+  function saveGamesArray(array, nextGamesURL) {
+    const objectForSave = {gamesArray: array, nextURL: nextGamesURL}
+    const objectString = JSON.stringify(objectForSave);
+    sessionStorage.setItem("homepage-games", objectString);
+}
   const data = async (url=`https://api.rawg.io/api/games?key=9d556c4cd201463ea9431c04bd8fe592`)=>{
       try{
           setIsLoading(true);
           const response = await fetch(url);
           const results = await response.json();
           console.log(results);
-          setGames(games.concat(results.results));
-          setNextGsames(results.next);
+          const newGamesArray = games.concat(results.results);
+          setGames(newGamesArray);
+          setNextGames(results.next);
+          saveGamesArray(newGamesArray,results.next);
       }catch (e) {
         setError(e);
       }finally{
@@ -23,7 +39,7 @@ const Home = () => {
       }
     };
   useEffect(()=>{
-    games.length === 0 && data();
+    checkSessionStorage();
   },[])
   return (
     <div className='App'>
