@@ -18,7 +18,7 @@ function Navbar() {
         </div>
       </Link>
         <ul>
-          {pages.map(item=><Link className='remove-link' key={item.name} to={item.link}><li className={item.name===page ? 'selected': null} onClick={()=>handlePageSelection(item.name)}>{item.name}</li></Link>)}
+          {pages.map(item=><Link className='remove-link' key={item.name} to={item.link}><li className={item.link===window.location.pathname ? 'selected': null} onClick={()=>handlePageSelection(item.name)}>{item.name}</li></Link>)}
         </ul>
              
         

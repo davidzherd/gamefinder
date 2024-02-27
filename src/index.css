@@ -77,3 +77,15 @@ code {
   animation:s1 1s infinite;
 }
 @keyframes s1 {to{transform: rotate(.5turn)}}
+
+.center-title{
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+.gap-1{
+  gap: 1rem;
+}
+.pl-0{
+  padding-left: 0;
+}
