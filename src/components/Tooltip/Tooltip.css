@@ -1,0 +1,19 @@
+.tool-tip-wrap {
+    width: 100px;
+    background-color: var(--primary-color);
+    text-align: center;
+    padding: 5px 0px;
+    /* Position the tooltip text */
+    position: absolute;
+    bottom: 100%; /* Position above the parent element */
+    left: 50%; /* Position horizontally centered relative to the parent element */
+    transform: translateX(-50%); /* Adjust horizontal centering */
+    border-radius: 1rem;
+    opacity: 0;
+    visibility: hidden;
+    z-index: 100;
+  }
+  
+  .tip {
+    color: #fff;
+  }

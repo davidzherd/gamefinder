@@ -86,6 +86,9 @@ code {
 .gap-1{
   gap: 1rem;
 }
+.gap-05{
+  gap: 0.5rem;
+}
 .pl-0{
   padding-left: 0;
 }

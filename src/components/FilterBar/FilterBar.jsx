@@ -1,16 +1,47 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import './FilterBar.css'
 import { config } from '../../assets/config.js'
-function FilterBar() {
-    const platforms = [{id:1,name:"PC",url:"pc"},{id:2,name:"PlayStation",url:"playstation"},{id:3,name:"Xbox",url:"xbox"},{id:4,name:"iOS",url:"ios"},{id:8,name:"Android",url:"android"},{id:5,name:"MAC",url:"mac"},{id:6,name:"Linux",url:"linux"},{id:7,name:"Nintendo",url:"nintendo"},{id:9,name:"Atari",url:"atari"},{id:10,name:"Commodore / Amiga",url:"commodore-amiga"},{id:11,name:"SEGA",url:"sega"},{id:12,name:"3DO",url:"3do"},{id:13,name:"Neo Geo",url:"neo-geo"},{id:14,name:"WEB",url:"web"}];
-    const ganres = [{name:"Action", url:"action"}, {name:"Indie", url:"indie"}, {name:"Adventure", url:"adventure"}, {name:"RPG", url:"role-playing-games-rpg"}, {name:"Strategy", url:"strategy"}, {name:"Shooter", url:"shooter"},{name:"Casual", url:"casual"}, {name:"Simulation", url:"simulation"}, {name:"Puzzle", url:"puzzle"}, {name:"Arcade", url:"arcade"}, {name:"Platformer", url:"plafrormer"},{name:"Racing", url:"racing"}, {name:"MMO", url:"massively-multiplayer"}, {name:"Sports", url:"sports"}, {name:"Fighting", url:"fighting"}, {name:"Family", url:"family"}, {name:"Board Games", url:"board-games"}, {name:"Educational", url:"educational"}, {name:"Cards", url:"card"}];
-  return (
-    <menu className='row center gap-1 pl-0'>
+import Tooltip from '../Tooltip/Tooltip.jsx';
+import Button from '../Button/Button.jsx';
+function FilterBar({ currentPlatforms, currentGaneres, filterAction },...props) {
+  const allFilters = [...config.ganres, ...config.platforms];
+  useEffect(() => {
+    const handleResize = () => {
+      setComponentType(window.innerWidth < 900 ? false : true);
+    };
+  
+    // Listen for the resize event and call handleResize
+    window.addEventListener('resize', handleResize);
+  
+    // Call handleResize immediately to set the initial state
+    handleResize();
+  
+    // Clean up the event listener when the component unmounts
+    return () => {
+      window.removeEventListener('resize', handleResize);
+    };
+  }, []);
+  const [componentType, setComponentType] = useState(true)
+  const desktop = 
+  <menu className='filter-menu pl-0'>
+    <span className='filter-type center gap-05'>
       <h2>Platforms</h2>
-      {config.platforms.map((platform=><img className='platformImage' key={platform.id} src={platform.icon} alt={platform.name}/>))}
-      <h2>Generes</h2>
-      {ganres.map((ganre=><p className='filter-text'>{ganre.name}</p>))}
-    </menu>
+      {config.platforms.map((platform=><div title={platform.name} key={platform.id} className={currentPlatforms.includes(platform.name) ? "has-tootip selected-filter" : "has-tootip"} onClick={()=>filterAction(platform.name, "platform")}><Tooltip tip={platform.name}/><img className='platformImage' key={platform.id} src={platform.icon} alt={platform.name}/></div>))}
+    </span>
+    <span className='filter-type center gap-05'>
+      <h2>Ganres</h2>
+      {config.ganres.map((ganre=><div title={ganre.name} key={ganre.id} className={currentGaneres.includes(ganre.name) ? "has-tootip selected-filter" : "has-tootip"} onClick={()=>filterAction(ganre.name, "ganre")}><Tooltip tip={ganre.name}/><img className='platformImage' key={ganre.id} src={ganre.icon} alt={ganre.name}/></div>))}
+    </span>
+  </menu>;
+  const mobile = <div className='margin-1rem mobile-layout'>
+    <Button style="fill-btn" action={()=>console.log("click")}>Apply Filters</Button>
+    <span className='filter-type center gap-05 align-center'>
+      <h2>Applied filters</h2>
+      <div>{allFilters.map((filter=><div title={filter.name} key={filter.name} className="has-tootip"><Tooltip tip={filter.name}/><img className='platformImage' key={filter.name} src={filter.icon} alt={filter.name}/></div>))}</div>
+    </span>
+    </div>
+  return (
+    componentType ? desktop : mobile
   )
 }
 
