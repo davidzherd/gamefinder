@@ -27,7 +27,7 @@ import mmo from "./mmo.png";
 import sports from "./sports.png";
 import fighting from "./fighter.png";
 import family from "./family.png";
-import board from "./family.png";
+import board from "./board.png";
 import educational from "./educational.png";
 import cards from "./cards.png";
 
