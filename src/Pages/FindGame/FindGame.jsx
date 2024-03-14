@@ -2,10 +2,13 @@ import React, { useState } from 'react'
 import Search from '../../components/Search/Search.jsx'
 import './FindGame.css'
 import FilterBar from '../../components/FilterBar/FilterBar.jsx';
+import GameContainer from '../../components/GameContainer/GameContainer.jsx';
 function FindGame() {
   const [searchTerm, setSearchTerm] = useState("");
   const [selectedGaneres, setsSlectedGaneres] = useState([]);
   const [selectedPlatforms, setSelectedPlatforms] = useState([]);
+  const [games, setGames] = useState([]);
+  const [error, setError] = useState('');
 
   function handleSearchInput(event){
     setSearchTerm(event.target.value);
@@ -35,6 +38,26 @@ function FindGame() {
         <Search inputAction={handleSearchInput} clickAction={handleSearchClick} inputValue ={searchTerm} />
         <FilterBar currentPlatforms={selectedPlatforms} currentGaneres={selectedGaneres} filterAction={filterClick} />
       </header>
+      <main>
+      <div className="games-container">
+        {error && (
+          <p className="text-color">
+            Sorry we had an issue getting data, please try again later!
+          </p>
+        )}
+        {games &&
+          games.map((game) => (
+            <GameContainer
+              key={game.id}
+              gameRating={Math.round(game.rating * 20) / 10}
+              gamePltarforms={game.parent_platforms}
+              gameName={game.name}
+              gameImage={game.background_image}
+              releaseDate={game.released}
+            />
+          ))}
+      </div>
+      </main>
     </div>
   )
 }
