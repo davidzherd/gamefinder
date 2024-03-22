@@ -3,6 +3,8 @@ import "./Home.css";
 import userImage from "../../assets/codplayer.png";
 import GameContainer from "../../components/GameContainer/GameContainer";
 import Button from "../../components/Button/Button";
+
+
 const Home = () => {
   const [games, setGames] = useState([]);
   const [error, setError] = useState(null);
@@ -25,7 +27,7 @@ const Home = () => {
     sessionStorage.setItem("homepage-games", objectString);
   }
   const data = async (
-    url = 'https://api.rawg.io/api/games?key=9d556c4cd201463ea9431c04bd8fe592'
+    url = `https://api.rawg.io/api/games?key=${process.env.REACT_APP_API_KEY}`
   ) => {
     try {
       setIsLoading(true);
