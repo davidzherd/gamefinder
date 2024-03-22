@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import './FilterBar.css'
-import { config } from '../../assets/config.js'
+import { config } from '../../Assets/config.js'
 import Tooltip from '../Tooltip/Tooltip.jsx';
 import Button from '../Button/Button.jsx';
 

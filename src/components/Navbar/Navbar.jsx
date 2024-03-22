@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import './Navbar.css'
-import controllerImg from '../../assets/controller.png'
+import controllerImg from '../../Assets/controller.png'
 import { Link } from 'react-router-dom';
 
 function Navbar() {

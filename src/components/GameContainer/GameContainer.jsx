@@ -1,7 +1,7 @@
 import React, { useState } from "react";
-import starImg from "../../assets/star.png";
+import starImg from "../../Assets/star.png";
 import "./GameContainer.css";
-import { config } from '../../assets/config.js'
+import { config } from '../../Assets/config.js'
 
 function GameContainer({
   gameImage,

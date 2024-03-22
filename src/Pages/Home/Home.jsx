@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import "./Home.css";
-import userImage from "../../assets/codplayer.png";
+import userImage from "../../Assets/codplayer.png";
 import GameContainer from "../../components/GameContainer/GameContainer";
 import Button from "../../components/Button/Button";
 
