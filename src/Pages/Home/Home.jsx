@@ -3,7 +3,7 @@ import "./Home.css";
 import userImage from "../../Assets/codplayer.png";
 import GameContainer from "../../components/GameContainer/GameContainer";
 import Button from "../../components/Button/Button";
-
+import axios from "axios";
 
 const Home = () => {
   const [games, setGames] = useState([]);
@@ -27,18 +27,16 @@ const Home = () => {
     sessionStorage.setItem("homepage-games", objectString);
   }
   const data = async (
-    url = `https://api.rawg.io/api/games?key=${process.env.REACT_APP_API_KEY}`
+    nextURL = `https://api.rawg.io/api/games?key=${process.env.REACT_APP_API_KEY}`
   ) => {
     try {
       setIsLoading(true);
-      const response = await fetch(url);
-      const results = await response.json();
-      console.log(results);
-      const newGamesArray = games.concat(results.results);
+      const response = await axios.get(nextURL);
+      const newGamesArray = games.concat(response.data.results);
       setGames(newGamesArray);
       setError(null);
-      setNextGames(results.next);
-      saveGamesArray(newGamesArray, results.next);
+      setNextGames(response.data.next);
+      saveGamesArray(newGamesArray, response.data.next);
     } catch (e) {
       setError(e);
     } finally {
