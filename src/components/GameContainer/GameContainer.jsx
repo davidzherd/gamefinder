@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import starImg from "../../Assets/star.png";
 import "./GameContainer.css";
-import { config } from '../../Assets/config.js'
+import { config } from "../../Assets/config.js";
 
 function GameContainer({
   gameImage,
@@ -12,8 +12,10 @@ function GameContainer({
 }) {
   let platformArray = [];
   for (const parentPlatform of gamePltarforms) {
-    const platform = config.platforms.find(platform=> platform.id === parentPlatform.platform.id)
-    platformArray.push(platform.icon)
+    const platform = config.platforms.find(
+      (platform) => platform.id === parentPlatform.platform.id
+    );
+    platformArray.push(platform.icon);
   }
   function isGolden() {
     if (gameRating >= 8.5) {
@@ -24,13 +26,22 @@ function GameContainer({
   }
   return (
     <div className={`card ${isGolden()}`}>
-      <img key={1} src={gameImage} alt={gameName} className="game-image" />
+      <img
+        key={"img" + gameName}
+        src={gameImage}
+        alt={gameName}
+        className="game-image"
+      />
       <div className="platforms">
         {platformArray.map((platform) => (
-          <img src={platform} className="platformImage" />
+          <img
+            src={platform}
+            className="platformImage"
+            key={gameName + platform}
+          />
         ))}
       </div>
-      <h2 className="game-name">{gameName}</h2>
+      <h3 className="game-name">{gameName}</h3>
       <div className="extra-details">
         <p className="release-date">
           <span className="text-color">Release date: </span>
